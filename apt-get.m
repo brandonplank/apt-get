@@ -4,7 +4,7 @@
 
 #define pacman_install "pacman -S "
 #define pacman_remove "pacman -Rs "
-#define comfirm " --noconfirm"
+#define confirm " --noconfirm"
 
 
 int cmdV(const char *command) {
@@ -37,35 +37,35 @@ void help(){
 }
 
 int main(int argc, const char* argv[]){
-    puts("APT wrapper by Brandon Plank");
+    puts("APT wrapper by Brandon Plank v1.1");
     const char* todo_cmd = argv[1];
 
     if(argc<3){
         help();
     }
 
-    char finshed[10000];   // big
+    char finished[10000];   // big
     if(strcmp(todo_cmd, "install")==0){
-        strcpy(finshed,pacman_install); // copy string one into the result.
+        strcpy(finished,pacman_install); // copy string one into the result.
         for(int i = 0; i<argc; i++){
             if(argv[i] > argv[1]){
-                strcat(finshed,argv[i]);
-                strcat(finshed, " ");
+                strcat(finished,argv[i]);
+                strcat(finished, " ");
             }
         }
     } else if (strcmp(todo_cmd, "remove")==0){
-        strcpy(finshed,pacman_remove); // copy string one into the result.
+        strcpy(finished,pacman_remove); // copy string one into the result.
         for(int i = 0; i<argc; i++){
             if(argv[i] > argv[1]){
-                strcat(finshed,argv[i]);
-                strcat(finshed, " ");
+                strcat(finished,argv[i]);
+                strcat(finished, " ");
             }
         }
     } else {
         help();
     }
 
-    strcat(finshed, comfirm);
-    cmdV(finshed);
+    strcat(finished, confirm);
+    cmdV(finished);
     return 0;
 }
